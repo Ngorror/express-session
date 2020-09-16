@@ -546,7 +546,8 @@ function getcookie(req, name, secrets) {
           val = undefined;
         }
       } else {
-        debug('cookie unsigned')
+        val = raw;
+        //debug('cookie unsigned')
       }
     }
   }
@@ -653,7 +654,7 @@ function issecure(req, trustProxy) {
  */
 
 function setcookie(res, name, val, secret, options) {
-  var signed = 's:' + signature.sign(val, secret);
+  var signed = val; //'s:' + signature.sign(val, secret);
   var data = cookie.serialize(name, signed, options);
 
   debug('set-cookie %s', data);
